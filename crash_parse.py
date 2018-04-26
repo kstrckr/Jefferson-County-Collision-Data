@@ -10,8 +10,8 @@ with open('JEFFERSON COUNTY_CRASH DATA_2010-2017.csv') as crash_csv:
     for line in crash_reader:
         crash_list.append(line)
 
-for header in enumerate(crash_list[0]):
-    print(header[0], header[1], crash_list[-1][header[0]])
+# for header in enumerate(crash_list[0]):
+#     print(header[0], header[1], crash_list[-1][header[0]])
 
 
 
@@ -21,14 +21,20 @@ class AccidentReport:
     @staticmethod
     def parse_row(row):
         for element in enumerate(row):
-            if element[1].strip() == '':
+
+
+            row[element[0]] = element[1].strip()
+
+
+            if element[1] == '':
                 row[element[0]] = None
 
-            if element[1].strip().lower() == 'y':
+            if element[1].lower() == 'y':
                 row[element[0]] = True
 
-            if element[1].strip().lower() == 'n':
+            if element[1].lower() == 'n':
                 row[element[0]] = False
+                
         return row
 
 
@@ -175,4 +181,4 @@ def print_single_crash_details(crash):
     for k, v in vars(crash).iteritems():
         print(k, v)
 
-print_single_crash_details(crash_objects[0])
+print_single_crash_details(crash_objects[456])
