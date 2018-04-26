@@ -155,24 +155,26 @@ class AccidentReport:
         self.ramp_to_roadway_id = parsed_row[44]
         self.secondary_collision_indicator = parsed_row[45]
  
-crash_list = []
-crash_objects = []
 
-with open('JEFFERSON COUNTY_CRASH DATA_2010-2017.csv') as crash_csv:
-    crash_reader = csv.reader(crash_csv)
+if __name__ == "__main__":
+    crash_list = []
+    crash_objects = []
+
+    with open('JEFFERSON COUNTY_CRASH DATA_2010-2017.csv') as crash_csv:
+        crash_reader = csv.reader(crash_csv)
 
 
-    for line in crash_reader:
-        crash_list.append(line)
+        for line in crash_reader:
+            crash_list.append(line)
 
-# for header in enumerate(crash_list[0]):
-#     print(header[0], header[1], crash_list[-1][header[0]])
+    # for header in enumerate(crash_list[0]):
+    #     print(header[0], header[1], crash_list[-1][header[0]])
 
-for crash in crash_list[1:]:
-    crash_objects.append(AccidentReport(crash))
+    for crash in crash_list[1:]:
+        crash_objects.append(AccidentReport(crash))
 
-def print_single_crash_details(crash):
-    for k, v in vars(crash).iteritems():
-        print(k, v)
+    def print_single_crash_details(crash):
+        for k, v in vars(crash).iteritems():
+            print(k, v)
 
-print_single_crash_details(crash_objects[30000])
+    print_single_crash_details(crash_objects[30000])
