@@ -174,7 +174,7 @@ if __name__ == "__main__":
         crash_objects.append(AccidentReport(crash))
 
     def print_single_crash_details(crash):
-        for k, v in vars(crash).iteritems():
+        for k, v in vars(crash).items():
             print(k, v)
 
     print_single_crash_details(crash_objects[30000])
