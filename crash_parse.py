@@ -1,7 +1,7 @@
 import csv
 
 class AccidentReport:
-    '''Represents an individual crash report and parses the data'''
+    '''Represents an individual self report and parses the data'''
 
     @staticmethod
     def parse_row(row):
@@ -68,8 +68,56 @@ class AccidentReport:
     ramp_to_roadway_id = None
     secondary_collision_indicator = None
 
-
+    def return_insert_tuple(self):
+        crash_insertable_values = (
+            self.master_file_number,
+            self.investigating_agency,
+            self.local_code,
+            self.collision_status_code,
+            self.county_name,
+            self.roadway_number,
+            self.block_or_house_number,
+            self.roadway_name,
+            self.roadway_suffix,
+            self.roadway_dir_code,
+            self.latitude,
+            self.longitude,
+            self.milepoint_derived,
+            self.collision_date,
+            self.collision_time,
+            self.intersection_roadway_number,
+            self.intersection_roadway_name, 
+            self.intersection_roadway_sfx,
+            self.between_st_roadway_num_1,
+            self.between_st_roadway_name_1,
+            self.between_st_roadway_sfx_1,
+            self.between_st_roadway_num_2,
+            self.between_st_roadway_name_2,
+            self.between_st_roadway_sfx_2,
+            self.units_involved,
+            self.motor_vehicles_involved,
+            self.killed,
+            self.injured,
+            self.weather_code,
+            self.weather,
+            self.roadway_condition_code,
+            self.roadway_condition,
+            self.hit_and_run_indication,
+            self.roadway_type_code,
+            self.roadway_type,
+            self.directional_analysis_code,
+            self.directional_analysis,
+            self.manner_of_collision_code,
+            self.manner_of_collision,
+            self.roadway_character_code,
+            self.roadway_character,
+            self.light_condition_code,
+            self.light_condition,
+            self.ramp_from_roadway_id,
+            self.ramp_to_roadway_id,
+            self.secondary_collision_indicator)
     
+        return crash_insertable_values
 
     def __init__(self, input_row):
 
@@ -170,11 +218,11 @@ if __name__ == "__main__":
     # for header in enumerate(crash_list[0]):
     #     print(header[0], header[1], crash_list[-1][header[0]])
 
-    for crash in crash_list[1:]:
-        crash_objects.append(AccidentReport(crash))
+    for self in crash_list[1:]:
+        crash_objects.append(AccidentReport(self))
 
-    def print_single_crash_details(crash):
-        for k, v in vars(crash).items():
+    def print_single_crash_details(self):
+        for k, v in vars(self).items():
             print(k, v)
 
     print_single_crash_details(crash_objects[30000])
